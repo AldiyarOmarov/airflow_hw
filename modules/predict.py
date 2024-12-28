@@ -1,7 +1,6 @@
-# <YOUR_IMPORTS>
 import os
 import json
-import pandas as pd  # Add this import statement
+import pandas as pd  
 import dill
 from sklearn.svm import SVC
 
@@ -10,7 +9,7 @@ path = os.path.expanduser('~/airflow_hw')
 
 def predict_single(json_data, model):
     import pandas as pd
-    df = pd.DataFrame.from_dict([json_data])  # Use pd instead of pandas
+    df = pd.DataFrame.from_dict([json_data]) 
     y = model.predict(df)
 
     return {
@@ -21,16 +20,14 @@ def predict_single(json_data, model):
 
 def predict():
     import pandas as pd
-    # Определяем последнюю модель
     latest_model = sorted(os.listdir(f'{path}/data/models'))[-1]
-    # Загружаем обученную модель
     with open(f'{path}/data/models/{latest_model}', 'rb') as f:
         model = dill.load(f)
 
     test_data_folder = f'{path}/data/test'
     predictions_folder = f'{path}/data/predictions'
 
-    all_predictions = pd.DataFrame()  # Use pd instead of pandas
+    all_predictions = pd.DataFrame() 
 
     for filename in os.listdir(test_data_folder):
         if filename.endswith(".json"):
