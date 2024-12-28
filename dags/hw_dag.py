@@ -34,5 +34,4 @@ with DAG(
         dag=dag,
     )
 
-    # <YOUR_CODE>
     pipeline_task >> predict_task
